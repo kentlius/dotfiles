@@ -17,3 +17,6 @@ nnoremap <C-h> ;<C-h>j
 
 " Set <Leader> key to comma
 let mapleader = ","
+
+" Auto completion with dot
+" inoremap . .<C-x><C-o>

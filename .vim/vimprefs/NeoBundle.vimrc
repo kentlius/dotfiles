@@ -7,11 +7,13 @@ filetype off                   " required!
 filetype plugin indent off     " required!
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'	" Let NeoBundle manage NeoBundle
+
 " Internal plugins
-NeoBundle 'Shougo/NeoBundle.vim'                        " manage NeoBundle itsself
 NeoBundle 'Shougo/vimproc', {
 	\ 'build' : {
 		\ 'windows' : 'make -f make_mingw32.mak',
@@ -21,7 +23,7 @@ NeoBundle 'Shougo/vimproc', {
 	\ },
 \ }
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'tpope/vim-dispatch' 											"for launch Omnisharp server automatically
 
@@ -51,7 +53,7 @@ NeoBundle 'ShowMarks7'															"Show marks at left
 NeoBundle 'number-marks'														"Mark with array
 
 " Editing
-NeoBundle 'EnhCommentify.vim'                       " '\x' to comment out current selection
+NeoBundle 'EnhCommentify.vim'                       " '<Leader>x' to comment out current selection
 NeoBundle 'Lokaltog/vim-easymotion'									"Move to specific word with \w cmd
 NeoBundle 'taku-o/vim-toggle'												"Toggle 'true' and 'false', 'private' and 'public'  with <C-T>
 NeoBundle 'h1mesuke/unite-outline'
