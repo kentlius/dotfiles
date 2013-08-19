@@ -25,7 +25,6 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'tpope/vim-dispatch' 											"for launch Omnisharp server automatically
 
 " Clients
 NeoBundle 'Shougo/vimshell'
