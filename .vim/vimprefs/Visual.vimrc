@@ -5,10 +5,10 @@ set number
 set showmode
 set title
 set showcmd
-set showmatch
 set laststatus=2
 set cursorline cursorcolumn
 set scrolloff=5
+set splitbelow
 "colorscheme
 syntax enable
 set background=dark
