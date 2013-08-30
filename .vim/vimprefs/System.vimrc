@@ -11,7 +11,7 @@ set swapfile
 set directory=/tmp
 
 " Encoding
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8
 
 " Search
 set ignorecase "検索文字列が小文字の場合は大文字小文字を区別なく検索する
