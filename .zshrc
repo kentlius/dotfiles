@@ -1,79 +1,50 @@
-#####################
-# Grobal
-#####################
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
 
-# Vim風キーバインド
- bindkey -v
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="kolo"
 
-# フロー制御コマンドを使わない
-setopt NO_FLOW_CONTROL
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# ヒストリの設定
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-HIST_IGNORE_ALL_DUPS=true
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
 
-# ヒストリに時刻を記録
-setopt extended_history
+# Comment this out to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
 
-# コマンドをヒストリから検索
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
+# Uncomment to change how often before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
 
-# コマンド訂正
-setopt correct
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-# 補完で大文字を保管する
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# 補完機能の強化（コマンドの引数を補完）
-autoload -U compinit
-compinit
+# Uncomment following line if you want to disable command autocorrection
+# DISABLE_CORRECTION="true"
 
-# TAB で順に補完候補を切り替える
-setopt auto_menu
-# 補完候補のカーソル選択を有効に
-zstyle ':completion:*:default' menu select=1
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
 
-# zaw.zshの読み込み（色々な補完をしてくれるスクリプト）
-source ~/.zsh/zaw/zaw.zsh
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# ディレクトリ名を入力するだけで移動
-setopt auto_cd
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git vi-mode osx)
 
-# ディレクトリ移動の際に自動でglsしてついでにメニューバーのタイトルを変更する
-chpwd() {
-    # メニューバーのタイトルを変更
-    echo -n "\e]2;$(pwd)\a"
+source $ZSH/oh-my-zsh.sh
 
-	ls -F
-}
-
-# PATH checker
-path(){
-	PATH_ARRAY=("${(s/:/)PATH}");
-	for indPath in $PATH_ARRAY; do
-		echo $indPath
-	done
-}
-
-
-#####################
-# PATH
-#####################
-
-[ -f ~/.path.zshrc ] && source ~/.path.zshrc
-
-# Remove duplicated PATH
-typeset -U PATH
-
-
-#####################
-# For local settings
-#####################
-
+# Customize to your needs...
+export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+[ -f ~/.global.zshrc ] && source ~/.global.zshrc
 [ -f ~/.local.zshrc ] && source ~/.local.zshrc
