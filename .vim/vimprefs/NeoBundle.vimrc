@@ -23,13 +23,21 @@ NeoBundle 'Shougo/vimproc', {
 	\ },
 \ }
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'Shougo/neosnippet'
 
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'h1mesuke/unite-outline'
+NeoBundleLazy "Shougo/unite.vim", {
+      \ "autoload": {
+      \   "commands": ["Unite", "UniteWithBufferDir"]
+      \ }
+\ }
+NeoBundleLazy 'h1mesuke/unite-outline', {
+      \ "autoload": {
+      \   "unite_sources": ["outline"],
+      \ }
+\ }
 
 " Clients
-NeoBundle 'Shougo/vimshell'
+"NeoBundle 'Shougo/vimshell'
 
 " Language specific
 NeoBundleLazy 'nosami/Omnisharp',  {
@@ -40,8 +48,13 @@ NeoBundleLazy 'nosami/Omnisharp',  {
 		\ 'unix': 'xbuild server/OmniSharp.sln',
 	\ }
 \ }
-NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'kchmck/vim-coffee-script'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {
+	\ 'autoload': {'filetypes': ['js']}
+\ }
+autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+NeoBundleLazy 'kchmck/vim-coffee-script', {
+	\ 'autoload': {'filetypes': ['coffee']}
+\ }
 NeoBundle 'thinca/vim-quickrun'                     "run many program source files in vim with '\r' kwy
 
 " Utility
@@ -56,3 +69,5 @@ NeoBundle 'number-marks'							"Mark with array
 " Editing
 NeoBundle 'EnhCommentify.vim'                       " '<Leader>x' to comment out current selection
 NeoBundle 'Lokaltog/vim-easymotion'					"Move to specific word
+
+filetype plugin indent on     						" required!
