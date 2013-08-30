@@ -1,29 +1,23 @@
-﻿" システム系の設定を読み込む
+﻿" Common Vim setting
 source ~/.vim/vimprefs/System.vimrc
 
-" NeoBundle関連の設定を読み込む
+" NeoBundle
 source ~/.vim/vimprefs/NeoBundle.vimrc
 
-" プラグインの設定をする
+" Plugin specific settings
 source ~/.vim/vimprefs/Plugins.vimrc
 
-" 見た目に関する設定
+" Visual
 source ~/.vim/vimprefs/Visual.vimrc
 
-" 検索に関する設定
-source ~/.vim/vimprefs/Search.vimrc
-
-" 補完に関する設定
+" Completion
 source ~/.vim/vimprefs/AutoComplete.vimrc
 
-" インデントの設定
-source ~/.vim/vimprefs/Indent.vimrc
+" Keybindings
+source ~/.vim/vimprefs/Keybinding.vimrc
 
-" その他の設定
-source ~/.vim/vimprefs/Misc.vimrc
-
-" マクロ設定
-source ~/.vim/vimprefs/Macro.vimrc
+" Automation
+source ~/.vim/vimprefs/Automation.vimrc
 
 " MacVimの設定
 if has('gui_macvim')

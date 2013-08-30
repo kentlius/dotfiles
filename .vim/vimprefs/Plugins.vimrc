@@ -12,15 +12,28 @@ let g:OmniSharp_typeLookupInPreview = 1
 set noshowmatch
 
 "Unite -------------------------
-"let g:unite_enable_start_insert=1
+let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
+let g:unite_source_rec_max_cache_files = 15000
 
-nnoremap <silent> <D-p> :<C-u>call <SID>unite_project('-start-insert')<CR>
+" Double ESC to exit Unite
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+" Command + P to open everything
+nnoremap <silent> <D-p> :<C-u>call <SID>unite_project()<CR>
+nnoremap <silent> <Leader>p :<C-u>call <SID>unite_project()<CR>
+nnoremap <silent> <D-r> :<C-u>Unite outline<CR>
+nnoremap <silent> <Leader>r :<C-u>Unite outline<CR>
+
+" Search settings
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#set_profile('files', 'smartcase', 1)
+call unite#custom#source('file_rec', 'ignore_pattern', '\.meta$')
 
 function! s:unite_project(...)
 	let opts = (a:0 ? join(a:000,  ' ') : '')
-	let dir = unite#util#path2project_directory(expand('%'))
-	execute 'Unite' opts 'file_rec/async:' . dir
+	execute 'Unite' opts 'buffer file_rec:! file_mru'
 endfunction
-
