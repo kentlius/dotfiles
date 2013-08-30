@@ -14,3 +14,7 @@ noremap g<CR> g;
 
 " enter to save current buffer
 nnoremap <CR> :<C-u>w<CR>
+
+" Ctrl + Tab to switch through tabs
+noremap <C-Tab> :tabnext<CR>
+noremap <C-S-Tab> :tabprev<CR>
