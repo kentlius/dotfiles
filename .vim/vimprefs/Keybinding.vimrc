@@ -9,12 +9,6 @@ let mapleader = ","
 noremap ; :
 noremap : ;
 
-" CTRL-hjklでウィンドウ移動
-nnoremap <C-j> ;<C-w>j
-nnoremap <C-k> ;<C-k>j
-nnoremap <C-l> ;<C-l>j
-nnoremap <C-h> ;<C-h>j
-
 " g to back to previous edited line
 noremap g<CR> g;
 
