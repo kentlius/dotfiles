@@ -7,14 +7,16 @@ set title
 set showcmd
 set laststatus=2
 set cursorline cursorcolumn
-set scrolloff=5
+set scrolloff=10
 set splitbelow
+
 "colorscheme
 syntax enable
 set background=dark
 "let g:solarized_contrast = "high"
 "let g:solarized_visibility = "high"
 colorscheme solarized
+
 "Vim-powerline
 let g:Powerline_symbols = 'fancy'
 set t_Co=256

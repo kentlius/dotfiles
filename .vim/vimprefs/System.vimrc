@@ -21,9 +21,8 @@ set nohlsearch "検索結果文字列の非ハイライト表示
 set incsearch "インクリメンタルサーチ
 
 " Indent
-"cleaning source
 set smartindent "オートインデント
 "set expandtab "タブの代わりに空白文字挿入
 set ts=4 sw=4 sts=0 "タブは半角4文字分のスペース
 autocmd BufWritePre * :%s/\s\+$//ge "Delete end spaces
-"autocmd BufWritePre * :%s/\t/  /ge "Replace tab to spaces
+"autocmd BufWritePre * :%s/\t/  /ge "Replace tab by spaces

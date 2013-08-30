@@ -22,9 +22,11 @@ NeoBundle 'Shougo/vimproc', {
 		\ 'unix' : 'make -f make_unix.mak',
 	\ },
 \ }
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
+
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
 
 " Clients
 NeoBundle 'Shougo/vimshell'
@@ -39,20 +41,18 @@ NeoBundleLazy 'nosami/Omnisharp',  {
 	\ }
 \ }
 NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'thinca/vim-quickrun'                     "run many program source files in vim with '\r' kwy
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'thinca/vim-quickrun'                     "run many program source files in vim with '\r' kwy
 
 " Utility
-NeoBundle 'vim-scripts/sudo.vim'										"Usage -> vim sudo:~/file
+NeoBundle 'vim-scripts/sudo.vim'					"Usage -> vim sudo:~/file
 
 " Visual
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'ShowMarks7'															"Show marks at left
-NeoBundle 'number-marks'														"Mark with array
+NeoBundle 'ShowMarks7'								"Show marks at left
+NeoBundle 'number-marks'							"Mark with array
 
 " Editing
 NeoBundle 'EnhCommentify.vim'                       " '<Leader>x' to comment out current selection
-NeoBundle 'Lokaltog/vim-easymotion'									"Move to specific word with \w cmd
-NeoBundle 'taku-o/vim-toggle'												"Toggle 'true' and 'false', 'private' and 'public'  with <C-T>
-NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'Lokaltog/vim-easymotion'					"Move to specific word
