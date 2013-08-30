@@ -10,9 +10,6 @@ source ~/.vim/vimprefs/Plugins.vimrc
 " Visual
 source ~/.vim/vimprefs/Visual.vimrc
 
-" Completion
-source ~/.vim/vimprefs/AutoComplete.vimrc
-
 " Keybindings
 source ~/.vim/vimprefs/Keybinding.vimrc
 
