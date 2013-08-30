@@ -5,13 +5,6 @@
 "Easymotion --------------------
 let g:EasyMotion_leader_key = ',,'
 
-"Omnisharp ---------------------
-filetype plugin on
-let g:OmniSharp_host = "http://localhost:2000"
-"Set the type lookup function to use the preview window instead of the status line
-let g:OmniSharp_typeLookupInPreview = 1
-set noshowmatch
-
 "Unite -------------------------
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
@@ -38,6 +31,13 @@ function! s:unite_project(...)
 	let opts = (a:0 ? join(a:000,  ' ') : '')
 	execute 'Unite' opts 'buffer file_rec:! file_mru'
 endfunction
+
+"Omnisharp ---------------------
+filetype plugin on
+let g:OmniSharp_host = "http://localhost:2000"
+"Set the type lookup function to use the preview window instead of the status line
+let g:OmniSharp_typeLookupInPreview = 1
+set noshowmatch
 
 "Neocomplete -------------------
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -95,4 +95,4 @@ let g:neocomplete#sources#omni#input_patterns.default = '\h\w*'
 let g:neocomplete#sources#omni#input_patterns.php = '[^.  \t]->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.cs = '[^\t\=]'
+let g:neocomplete#sources#omni#input_patterns.cs = '[^\t\=;]'
