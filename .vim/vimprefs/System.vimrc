@@ -7,8 +7,8 @@ set clipboard=unnamed,autoselect
 
 " Swap
 set nobackup
-set swapfile
-set directory=/tmp
+set noswapfile
+"set directory=/tmp
 
 " Encoding
 set fileencodings=utf-8
