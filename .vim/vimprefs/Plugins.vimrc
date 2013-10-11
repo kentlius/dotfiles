@@ -18,8 +18,14 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " Command + P to open everything
 nnoremap <silent> <D-p> :<C-u>call <SID>unite_project()<CR>
 nnoremap <silent> <Leader>p :<C-u>call <SID>unite_project()<CR>
+
+" Command + R to open outline
 nnoremap <silent> <D-r> :<C-u>Unite outline<CR>
 nnoremap <silent> <Leader>r :<C-u>Unite outline<CR>
+
+" Command + W to close buffer
+nnoremap <silent> <D-w> :bd<CR>
+nnoremap <silent> <Leader>w :bd<CR>
 
 " Search settings
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -29,7 +35,7 @@ call unite#custom#source('file_rec', 'ignore_pattern', '\.meta$')
 
 function! s:unite_project(...)
 	let opts = (a:0 ? join(a:000,  ' ') : '')
-	execute 'Unite' opts 'buffer file_rec:! file_mru'
+	execute 'Unite' opts 'buffer file_mru file_rec:'
 endfunction
 
 "Omnisharp ---------------------
