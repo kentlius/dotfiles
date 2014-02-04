@@ -11,3 +11,10 @@ function chpwd() {
 	ls -a
 }
 
+# Re-compile .zshrc automatically
+if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
+	zcompile ~/.zshrc
+fi
+
+# Use Japanese language
+export LANG=ja_JP.UTF-8
