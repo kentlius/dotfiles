@@ -48,3 +48,6 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 [ -f ~/.global.zshrc ] && source ~/.global.zshrc
 [ -f ~/.local.zshrc ] && source ~/.local.zshrc
+
+# Delete duplicated PATH
+typeset -U PATH
