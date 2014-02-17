@@ -32,10 +32,12 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#set_profile('files', 'smartcase', 1)
 call unite#custom#source('file_rec', 'ignore_pattern', '\.meta$')
+"call unite#custom_filters('file_mru',
+"      \ ['matcher_file_name', 'sorter_default', 'converter_file_directory'])
 
 function! s:unite_project(...)
 	let opts = (a:0 ? join(a:000,  ' ') : '')
-	execute 'Unite' opts 'buffer file_mru file_rec:'
+	execute 'Unite' opts 'file_mru file_rec:'
 endfunction
 
 "Omnisharp ---------------------
@@ -74,9 +76,9 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+	return neocomplete#smart_close_popup() . "\<CR>"
+	" For no inserting <CR> key.
+	"return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
