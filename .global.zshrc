@@ -11,6 +11,9 @@ function chpwd() {
 	ls -a
 }
 
+# Search filename by sp command
+alias sp='mdfind -onlyin .'
+
 # Re-compile .zshrc automatically
 if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
 	zcompile ~/.zshrc
