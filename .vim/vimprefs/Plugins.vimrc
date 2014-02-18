@@ -40,6 +40,29 @@ function! s:unite_project(...)
 	execute 'Unite' opts 'file_mru file_rec:'
 endfunction
 
+"vim-autoformat  ---------------
+let g:formatprg_args_cs = "--mode=cs
+			\ --style=attach
+			\ --remove-brackets
+			\ --close-templates
+			\ --indent=tab=4
+			\ --indent-col1-comments
+			\ --max-code-length=100
+			\ "
+function! AutoformatBOM()
+	if &bomb == 0
+		Autoformat
+	else
+		set nobomb
+		Autoformat
+		set bomb
+	endif
+endfunction
+command! AutoformatBOM call AutoformatBOM()
+"command! w :<C-u>call AutoformatBOM()<CR>w<CR>
+imap <silent> <D-s> <ESC><ESC>:<C-u>call AutoformatBOM()<CR>:w<CR>
+nnoremap <silent> <D-s> :<C-u>call AutoformatBOM()<CR>:w<CR>
+
 "Omnisharp ---------------------
 filetype plugin on
 let g:OmniSharp_host = "http://localhost:2000"
@@ -99,7 +122,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+	let g:neocomplete#sources#omni#input_patterns = {}
 endif
 let g:neocomplete#sources#omni#input_patterns.default = '\h\w*'
 let g:neocomplete#sources#omni#input_patterns.php = '[^.  \t]->\h\w*\|\h\w*::'

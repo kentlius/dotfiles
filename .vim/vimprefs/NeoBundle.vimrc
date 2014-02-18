@@ -79,5 +79,6 @@ NeoBundle 'number-marks'							"Mark with array
 " Editing
 NeoBundle 'EnhCommentify.vim'                       " '<Leader>x' to comment out current selection
 NeoBundle 'Lokaltog/vim-easymotion'					"Move to specific word
+NeoBundle 'Chiel92/vim-autoformat'
 
 filetype plugin indent on     						" required!
