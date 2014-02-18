@@ -43,7 +43,7 @@ endfunction
 "vim-autoformat  ---------------
 let g:formatprg_args_cs = "--mode=cs
 			\ --style=attach
-			\ --remove-brackets
+			\ --add-brackets
 			\ --close-templates
 			\ --indent=tab=4
 			\ --indent-col1-comments
@@ -57,6 +57,8 @@ function! AutoformatBOM()
 		Autoformat
 		set bomb
 	endif
+	" remove empty line produced by AStyle formatter 2.04 bug
+	%s#\($\n\s*\)\+\%$##
 endfunction
 command! AutoformatBOM call AutoformatBOM()
 "command! w :<C-u>call AutoformatBOM()<CR>w<CR>
