@@ -8,8 +8,8 @@ let g:EasyMotion_leader_key = ',,'
 "Unite -------------------------
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
-let g:unite_source_file_mru_limit = 200
-let g:unite_source_rec_max_cache_files = 15000
+let g:unite_source_file_mru_limit = 500
+let g:unite_source_rec_max_cache_files = 5000
 
 " Double ESC to exit Unite
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
@@ -28,16 +28,14 @@ nnoremap <silent> <D-w> :bd<CR>
 nnoremap <silent> <Leader>w :bd<CR>
 
 " Search settings
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#set_profile('files', 'smartcase', 1)
-call unite#custom#source('file_rec', 'ignore_pattern', '\.meta$')
-"call unite#custom_filters('file_mru',
-"      \ ['matcher_file_name', 'sorter_default', 'converter_file_directory'])
+call unite#custom#source('file_rec/async', 'ignore_pattern', '\(meta\|png\|gif\|jpeg\|jpg\)$')
 
 function! s:unite_project(...)
 	let opts = (a:0 ? join(a:000,  ' ') : '')
-	execute 'Unite' opts 'file_mru file_rec:'
+	execute 'Unite' opts 'file_mru file_rec/async:!'
 endfunction
 
 "vim-autoformat  ---------------
@@ -46,10 +44,10 @@ let g:formatprg_args_cs = "--mode=cs
 			\ --add-brackets
 			\ --close-templates
 			\ --indent=tab=4
-			\ --indent-col1-comments
 			\ --max-code-length=100
 			\ "
 function! AutoformatBOM()
+	let l:pos = getpos(".")
 	if &bomb == 0
 		Autoformat
 	else
@@ -59,6 +57,7 @@ function! AutoformatBOM()
 	endif
 	" remove empty line produced by AStyle formatter 2.04 bug
 	%s#\($\n\s*\)\+\%$##
+	call setpos(".", pos)
 endfunction
 command! AutoformatBOM call AutoformatBOM()
 "command! w :<C-u>call AutoformatBOM()<CR>w<CR>
