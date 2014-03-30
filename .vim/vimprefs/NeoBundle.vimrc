@@ -35,6 +35,11 @@ NeoBundleLazy 'h1mesuke/unite-outline', {
       \   "unite_sources": ["outline"],
       \ }
 \ }
+NeoBundleLazy 'Shougo/neomru.vim', {
+	\ "autoload": {
+	\ 	"unite_sources": ["file_mru"],
+	\ }
+\}
 NeoBundleLazy 'basyura/unite-converter-file-directory', {
 	\ "autoload": {
 	\ 	"unite_sources": ["file_mru"],
