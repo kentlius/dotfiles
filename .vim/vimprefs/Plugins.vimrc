@@ -46,6 +46,16 @@ let g:formatprg_args_cs = "--mode=cs
 			\ --indent=tab=4
 			\ --max-code-length=100
 			\ "
+let g:formatprg_args_cpp = "--mode=cpp
+			\ --style=ansi
+			\ --add-brackets
+			\ --indent=tab=4
+			\ --max-code-length=100
+			\ --pad-header
+			\ --align-pointer=type
+			\ --close-templates
+			\ "
+
 function! AutoformatBOM()
 	let l:pos = getpos(".")
 	if &bomb == 0
@@ -71,6 +81,7 @@ let g:OmniSharp_host = "http://localhost:2000"
 let g:OmniSharp_typeLookupInPreview = 1
 set noshowmatch
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+autocmd FileType cpp setlocal omnifunc=OmniSharp#Complete
 
 
 "Neocomplete -------------------
