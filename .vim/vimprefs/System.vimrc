@@ -2,6 +2,12 @@
 " System cooperation
 " ------------------------------
 
+" Disable VI compatible mode
+set nocompatible
+
+" For better completion
+set wildmode=longest:full,list
+
 " Use OS's clipboard
 set clipboard=unnamed,autoselect
 
