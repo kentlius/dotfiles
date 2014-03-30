@@ -65,8 +65,6 @@ function! AutoformatBOM()
 		Autoformat
 		set bomb
 	endif
-	" remove empty line produced by AStyle formatter 2.04 bug
-	%s#\($\n\s*\)\+\%$##
 	call setpos(".", pos)
 endfunction
 command! AutoformatBOM call AutoformatBOM()
