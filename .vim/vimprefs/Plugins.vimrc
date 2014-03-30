@@ -27,6 +27,10 @@ nnoremap <silent> <Leader>r :<C-u>Unite outline<CR>
 nnoremap <silent> <D-w> :bd<CR>
 nnoremap <silent> <Leader>w :bd<CR>
 
+" Command + S to save buffer
+imap <silent> <D-s> <ESC><ESC><CR>:w<CR>
+nnoremap <silent> <D-s> :w<CR>
+
 " Search settings
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
@@ -68,9 +72,8 @@ function! AutoformatBOM()
 	call setpos(".", pos)
 endfunction
 command! AutoformatBOM call AutoformatBOM()
-"command! w :<C-u>call AutoformatBOM()<CR>w<CR>
-imap <silent> <D-s> <ESC><ESC>:<C-u>call AutoformatBOM()<CR>:w<CR>
-nnoremap <silent> <D-s> :<C-u>call AutoformatBOM()<CR>:w<CR>
+autocmd FileType c,cpp,cs imap <silent> <D-s> <ESC><ESC>:<C-u>call AutoformatBOM()<CR>:w<CR>
+autocmd FileType c,cpp,cs nnoremap <silent> <D-s> :<C-u>call AutoformatBOM()<CR>:w<CR>
 
 "Omnisharp ---------------------
 filetype plugin on
