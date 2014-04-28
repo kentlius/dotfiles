@@ -19,8 +19,20 @@ function chpwd() {
 	ls -a
 }
 
-# Search filename by sp command
-alias sp='mdfind -onlyin .'
-
+# Copy output to clipboard
+if which pbcopy >/dev/null 2>&1 ; then
+    # Mac
+    alias -g clip='| pbcopy'
+elif which xsel >/dev/null 2>&1 ; then
+    # Linux
+    alias -g clip='| xsel --input --clipboard'
+elif which putclip >/dev/null 2>&1 ; then
+    # Cygwin
+    alias -g clip='| putclip'
 fi
 
+# Search file
+if which mdfind >/dev/null 2>&1 ; then
+    # Mac
+	alias spot='mdfind -onlyin .'
+fi
