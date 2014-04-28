@@ -1,3 +1,11 @@
+# Re-compile .zshrc automatically
+if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
+	zcompile ~/.zshrc
+fi
+
+# Use Japanese language
+export LANG=ja_JP.UTF-8
+
 # Complete command by ^P and ^N
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -14,10 +22,5 @@ function chpwd() {
 # Search filename by sp command
 alias sp='mdfind -onlyin .'
 
-# Re-compile .zshrc automatically
-if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
-	zcompile ~/.zshrc
 fi
 
-# Use Japanese language
-export LANG=ja_JP.UTF-8
