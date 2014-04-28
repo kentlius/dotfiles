@@ -19,8 +19,10 @@ function chpwd() {
 	ls -a
 }
 
-# Search filename by sp command
-alias sp='mdfind -onlyin .'
-
 fi
 
+# Search file
+if which mdfind >/dev/null 2>&1 ; then
+    # Mac
+	alias spot='mdfind -onlyin .'
+fi
