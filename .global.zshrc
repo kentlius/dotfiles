@@ -19,6 +19,16 @@ function chpwd() {
 	ls -a
 }
 
+# Copy output to clipboard
+if which pbcopy >/dev/null 2>&1 ; then
+    # Mac
+    alias -g clip='| pbcopy'
+elif which xsel >/dev/null 2>&1 ; then
+    # Linux
+    alias -g clip='| xsel --input --clipboard'
+elif which putclip >/dev/null 2>&1 ; then
+    # Cygwin
+    alias -g clip='| putclip'
 fi
 
 # Search file
