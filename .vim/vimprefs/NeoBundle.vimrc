@@ -30,7 +30,7 @@ NeoBundleLazy "Shougo/unite.vim", {
       \   "commands": ["Unite", "UniteWithBufferDir"]
       \ }
 \ }
-NeoBundleLazy 'h1mesuke/unite-outline', {
+NeoBundleLazy 'Shougo/unite-outline', {
       \ "autoload": {
       \   "unite_sources": ["outline"],
       \ }
