@@ -3,7 +3,8 @@
 " ------------------------------
 
 "Easymotion --------------------
-let g:EasyMotion_leader_key = ',,'
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline=0
 
 "Unite -------------------------
 let g:unite_enable_start_insert=1
