@@ -15,22 +15,6 @@ let g:unite_source_rec_max_cache_files = 5000
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
-" Command + P to open everything
-nnoremap <silent> <D-p> :<C-u>call <SID>unite_project()<CR>
-nnoremap <silent> <Leader>p :<C-u>call <SID>unite_project()<CR>
-
-" Command + R to open outline
-nnoremap <silent> <D-r> :<C-u>Unite outline<CR>
-nnoremap <silent> <Leader>r :<C-u>Unite outline<CR>
-
-" Command + W to close buffer
-nnoremap <silent> <D-w> :bd<CR>
-nnoremap <silent> <Leader>w :bd<CR>
-
-" Command + S to save buffer
-imap <silent> <D-s> <ESC><ESC><CR>:w<CR>
-nnoremap <silent> <D-s> :w<CR>
-
 " Search settings
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
@@ -41,6 +25,7 @@ function! s:unite_project(...)
 	let opts = (a:0 ? join(a:000,  ' ') : '')
 	execute 'Unite' opts 'file_mru file_rec/async:!'
 endfunction
+command! UniteProject call <SID>unite_project()
 
 "vim-autoformat  ---------------
 let g:formatprg_args_cs = "--mode=cs
@@ -82,8 +67,6 @@ let g:OmniSharp_host = "http://localhost:2000"
 let g:OmniSharp_typeLookupInPreview = 1
 set noshowmatch
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-autocmd FileType cpp setlocal omnifunc=OmniSharp#Complete
-
 
 "Neocomplete -------------------
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
