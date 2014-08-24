@@ -50,11 +50,20 @@ NeoBundleLazy 'basyura/unite-matchers', {
 	\ 	"unite_sources": ["file_mru"],
 	\ }
 \}
+NeoBundle "thinca/vim-unite-history", {
+	\ "autoload": {
+	\ 	"unite_sources": ["history/command"],
+	\ }
+\}
 
 " Clients
 "NeoBundle 'Shougo/vimshell'
 
 " Language specific
+"NeoBundle 'osyo-manga/vim-reunions'
+NeoBundleLazy 'osyo-manga/vim-marching', {
+	\ 'autoload': {'filetypes': ['c', 'cpp', 'objc']}
+\ }
 NeoBundleLazy 'nosami/Omnisharp',  {
 	\ 'autoload': {'filetypes': ['cs']},
 	\ 'build': {
