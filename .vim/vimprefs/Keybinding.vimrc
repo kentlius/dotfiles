@@ -39,3 +39,7 @@ nnoremap <silent> <Leader>d :Dash!<CR>
 "Easymotion --------------------
 let g:EasyMotion_leader_key = 'r'
 nnoremap <silent> rr rw
+
+"OmniSharp ---------------------
+" Command + Control + J to Jump to definition
+nnoremap <silent> <F12> :<C-u>OmniSharpGotoDefinition<CR>
