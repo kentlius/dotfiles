@@ -5,6 +5,8 @@
 "Easymotion --------------------
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_startofline=0
+let g:EasyMotion_leader_key = 'm'
+nnoremap <silent> rr rw
 
 "Unite -------------------------
 let g:unite_enable_start_insert=1
@@ -17,26 +19,38 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 " Search settings
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#set_profile('files', 'smartcase', 1)
+call unite#custom#profile('files', 'context.smartcase', 1)
 call unite#custom#source('file_rec/async', 'ignore_pattern', '\(meta\|png\|gif\|jpeg\|jpg\)$')
 
 function! s:unite_project(...)
 	let opts = (a:0 ? join(a:000,  ' ') : '')
-	execute 'Unite' opts 'file_mru file_rec/async:!'
+	if getcwd() == $HOME
+		execute 'Unite' opts 'file_mru file'
+	else
+		execute 'Unite' opts 'file file_mru file_rec/async:'
+	endif
 endfunction
 command! UniteProject call <SID>unite_project()
 
 "vim-autoformat  ---------------
-let g:formatprg_args_cs = "--mode=cs
+let g:formatdef_my_custom_cs = '"astyle
+			\ --mode=cs
 			\ --style=attach
 			\ --add-brackets
 			\ --close-templates
-			\ --indent=tab=4
-			\ --max-code-length=100
-			\ "
-let g:formatprg_args_cpp = "--mode=cpp
+			\ --indent=tab
+			\ --max-instatement-indent=40
+			\ --break-blocks=all
+			\ --break-closing-brackets
+			\ --unpad-paren
+			\ --max-code-length=80
+			\ "'
+let g:formatters_cs = ['my_custom_cs']
+
+let g:formatdef_my_custom_cpp = "astye
+			\ --mode=cpp
 			\ --style=ansi
 			\ --add-brackets
 			\ --indent=tab=4
@@ -45,9 +59,10 @@ let g:formatprg_args_cpp = "--mode=cpp
 			\ --align-pointer=type
 			\ --close-templates
 			\ "
+let g:formatters_cpp = ['my_custom_cpp']
 
 function! AutoformatBOM()
-	let l:pos = getpos(".")
+"    let l:pos = getpos(".")
 	if &bomb == 0
 		Autoformat
 	else
@@ -55,7 +70,7 @@ function! AutoformatBOM()
 		Autoformat
 		set bomb
 	endif
-	call setpos(".", pos)
+"    call setpos(".", pos)
 endfunction
 command! AutoformatBOM call AutoformatBOM()
 autocmd FileType c,cpp,cs imap <silent> <D-s> <ESC><ESC>:<C-u>call AutoformatBOM()<CR>:w<CR>
@@ -80,6 +95,8 @@ let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+let g:neocomplete#force_overwrite_completefunc = 1
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -123,6 +140,43 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 let g:neocomplete#sources#omni#input_patterns.default = '\h\w*'
 let g:neocomplete#sources#omni#input_patterns.php = '[^.  \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.cs = '\w\|\.'
+if !exists('g:neocomplete#force_omni_input_patterns')
+	let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.objc = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.objcpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+" vim-marching ----------------
+" clang コマンドの設定
+let g:marching_clang_command = "/usr/bin/clang"
+
+" オプションを追加する場合
+let g:marching_clang_command_option="-std=c++1y"
+
+" インクルードディレクトリのパスを設定
+let g:marching_include_paths = [
+\   "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+\]
+
+" neocomplete.vim と併用して使用する場合
+let g:marching_enable_neocomplete = 1
+
+" 処理のタイミングを制御する
+" 短いほうがより早く補完ウィンドウが表示される
+set updatetime=200
+
+" オムニ補完時に補完ワードを挿入したくない場合
+imap <buffer> <C-x><C-o> <Plug>(marching_start_omni_complete)
+
+" キャッシュを削除してからオムに補完を行う
+"imap <buffer> <C-x><C-x><C-o> <Plug>(marching_force_start_omni_complete)
+let g:marching_backend = "sync_clang_command"
+
+" evervim ---------------------
+let g:evervim_devtoken="S=s20:U=207bd2:E=1581b761278:C=150c3c4e400:P=1cd:A=en-devtoken:V=2:H=2f0438b403161dfbdc2f2564bf4a6834"
+
+" vimshell --------------------
+
