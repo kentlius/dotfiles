@@ -5,6 +5,8 @@
 "Easymotion --------------------
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_startofline=0
+let g:EasyMotion_leader_key = 'm'
+nnoremap <silent> rr rw
 
 "Unite -------------------------
 let g:unite_enable_start_insert=1
@@ -19,7 +21,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " Search settings
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#set_profile('files', 'smartcase', 1)
+call unite#custom#profile('files', 'context.smartcase', 1)
 call unite#custom#source('file_rec/async', 'ignore_pattern', '\(meta\|png\|gif\|jpeg\|jpg\)$')
 
 function! s:unite_project(...)
@@ -33,14 +35,22 @@ endfunction
 command! UniteProject call <SID>unite_project()
 
 "vim-autoformat  ---------------
-let g:formatprg_args_cs = "--mode=cs
+let g:formatdef_my_custom_cs = '"astyle
+			\ --mode=cs
 			\ --style=attach
 			\ --add-brackets
 			\ --close-templates
-			\ --indent=tab=4
-			\ --max-code-length=100
-			\ "
-let g:formatprg_args_cpp = "--mode=cpp
+			\ --indent=tab
+			\ --max-instatement-indent=40
+			\ --break-blocks=all
+			\ --break-closing-brackets
+			\ --unpad-paren
+			\ --max-code-length=80
+			\ "'
+let g:formatters_cs = ['my_custom_cs']
+
+let g:formatdef_my_custom_cpp = "astye
+			\ --mode=cpp
 			\ --style=ansi
 			\ --add-brackets
 			\ --indent=tab=4
@@ -49,9 +59,10 @@ let g:formatprg_args_cpp = "--mode=cpp
 			\ --align-pointer=type
 			\ --close-templates
 			\ "
+let g:formatters_cpp = ['my_custom_cpp']
 
 function! AutoformatBOM()
-	let l:pos = getpos(".")
+"    let l:pos = getpos(".")
 	if &bomb == 0
 		Autoformat
 	else
@@ -59,7 +70,7 @@ function! AutoformatBOM()
 		Autoformat
 		set bomb
 	endif
-	call setpos(".", pos)
+"    call setpos(".", pos)
 endfunction
 command! AutoformatBOM call AutoformatBOM()
 autocmd FileType c,cpp,cs imap <silent> <D-s> <ESC><ESC>:<C-u>call AutoformatBOM()<CR>:w<CR>
@@ -138,7 +149,7 @@ let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\
 let g:neocomplete#force_omni_input_patterns.objc = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 let g:neocomplete#force_omni_input_patterns.objcpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
-" vim-marching --------------
+" vim-marching ----------------
 " clang コマンドの設定
 let g:marching_clang_command = "/usr/bin/clang"
 
@@ -163,4 +174,9 @@ imap <buffer> <C-x><C-o> <Plug>(marching_start_omni_complete)
 " キャッシュを削除してからオムに補完を行う
 "imap <buffer> <C-x><C-x><C-o> <Plug>(marching_force_start_omni_complete)
 let g:marching_backend = "sync_clang_command"
+
+" evervim ---------------------
+let g:evervim_devtoken="S=s20:U=207bd2:E=1581b761278:C=150c3c4e400:P=1cd:A=en-devtoken:V=2:H=2f0438b403161dfbdc2f2564bf4a6834"
+
+" vimshell --------------------
 

@@ -18,7 +18,7 @@ set background=dark
 colorscheme solarized
 
 "Vim-powerline
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 set t_Co=256
 
 " ShowMarks

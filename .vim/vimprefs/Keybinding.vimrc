@@ -10,7 +10,7 @@ noremap ; :
 noremap : ;
 
 " enter to save current buffer
-nnoremap <CR> :<C-u>w<CR>
+nnoremap <Space> :<C-u>w<CR>
 
 " Ctrl + Tab to switch through tabs
 noremap <C-Tab> :tabnext<CR>
@@ -28,14 +28,7 @@ nnoremap <silent> <Leader>r :<C-u>Unite outline<CR>
 nnoremap <silent> <D-w> :bd<CR>
 nnoremap <silent> <Leader>w :bd<CR>
 
-" Command + S to save buffer
-imap <silent> <D-s> <ESC><ESC><CR>:w<CR>
-nnoremap <silent> <D-s> :w<CR>
-
 " Command + D to search with Dash
 nnoremap <silent> <D-d> :Dash!<CR>
 nnoremap <silent> <Leader>d :Dash!<CR>
 
-"Easymotion --------------------
-let g:EasyMotion_leader_key = 'r'
-nnoremap <silent> rr rw

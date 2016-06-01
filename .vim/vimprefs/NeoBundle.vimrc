@@ -1,17 +1,26 @@
 " ------------------------------
 " Plugin management
 " ------------------------------
+
 "NeoBundle
-set nocompatible               " be iMproved
-filetype off                   " required!
-filetype plugin indent off     " required!
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
 if has('vim_starting')
+	if &compatible
+		set nocompatible               " Be iMproved
+	endif
+
+	" Required:
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'	" Let NeoBundle manage NeoBundle
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Internal plugins
 NeoBundle 'Shougo/vimproc', {
@@ -23,9 +32,10 @@ NeoBundle 'Shougo/vimproc', {
 	\ },
 \ }
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neomru.vim'
 "NeoBundle 'Shougo/neosnippet'
 
-NeoBundleLazy "Shougo/unite.vim", {
+NeoBundle "Shougo/unite.vim", {
       \ "autoload": {
       \   "commands": ["Unite", "UniteWithBufferDir"]
       \ }
@@ -40,16 +50,16 @@ NeoBundleLazy 'Shougo/neomru.vim', {
 	\ 	"unite_sources": ["file_mru"],
 	\ }
 \}
-NeoBundleLazy 'basyura/unite-converter-file-directory', {
-	\ "autoload": {
-	\ 	"unite_sources": ["file_mru"],
-	\ }
-\}
-NeoBundleLazy 'basyura/unite-matchers', {
-	\ "autoload": {
-	\ 	"unite_sources": ["file_mru"],
-	\ }
-\}
+"NeoBundleLazy 'basyura/unite-converter-file-directory', {
+"    \ 'autoload': {
+"    \ 	'unite_sources': ["file_mru"],
+"    \ }
+"\}
+"NeoBundleLazy 'basyura/unite-matchers', {
+"    \ 'autoload': {
+"    \ 	'unite_sources': ["file_mru"],
+"    \ }
+"\}
 NeoBundle "thinca/vim-unite-history", {
 	\ "autoload": {
 	\ 	"unite_sources": ["history/command"],
@@ -57,21 +67,22 @@ NeoBundle "thinca/vim-unite-history", {
 \}
 
 " Clients
-"NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimshell'
+"NeoBundle 'kakkyz81/evervim'
 
 " Language specific
 "NeoBundle 'osyo-manga/vim-reunions'
 NeoBundleLazy 'osyo-manga/vim-marching', {
 	\ 'autoload': {'filetypes': ['c', 'cpp', 'objc']}
 \ }
-NeoBundleLazy 'nosami/Omnisharp',  {
-	\ 'autoload': {'filetypes': ['cs']},
-	\ 'build': {
-		\ 'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
-		\ 'mac': 'xbuild server/OmniSharp.sln',
-		\ 'unix': 'xbuild server/OmniSharp.sln',
-	\ }
-\ }
+"NeoBundleLazy 'nosami/Omnisharp',  {
+"    \ 'autoload': {'filetypes': ['cs']},
+"    \ 'build': {
+"        \ 'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
+"        \ 'mac': 'xbuild server/OmniSharp.sln',
+"        \ 'unix': 'xbuild server/OmniSharp.sln',
+"    \ }
+"\ }
 NeoBundleLazy 'jelera/vim-javascript-syntax', {
 	\ 'autoload': {'filetypes': ['js']}
 \ }
@@ -79,7 +90,7 @@ autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 NeoBundleLazy 'kchmck/vim-coffee-script', {
 	\ 'autoload': {'filetypes': ['coffee']}
 \ }
-NeoBundle 'thinca/vim-quickrun'                     "run many program source files in vim with '\r' kwy
+"NeoBundle 'thinca/vim-quickrun'                     "run many program source files in vim with '\r' kwy
 
 " Utility
 NeoBundle 'vim-scripts/sudo.vim'					"Usage -> vim sudo:~/file
@@ -87,12 +98,20 @@ NeoBundle 'vim-scripts/sudo.vim'					"Usage -> vim sudo:~/file
 " Visual
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'ShowMarks7'								"Show marks at left
-NeoBundle 'number-marks'							"Mark with array
+"NeoBundle 'ShowMarks7'								"Show marks at left
+"NeoBundle 'number-marks'							"Mark with array
 
 " Editing
 NeoBundle 'EnhCommentify.vim'                       " '<Leader>x' to comment out current selection
 NeoBundle 'Lokaltog/vim-easymotion'					"Move to specific word
 NeoBundle 'Chiel92/vim-autoformat'
+NeoBundle 'vim-scripts/VisIncr'						"Increment Numbers
 
+call neobundle#end()
+
+" Required:
 filetype plugin indent on     						" required!
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
